@@ -1,0 +1,109 @@
+{
+  "privacyPolicy": {
+    "hospitalName": "Dr Slot",
+    "effectiveDate": "27 May, 2025",
+    "lastUpdated": "27 May, 2025",
+    "sections": [
+      {
+        "title": "Information We Collect",
+        "details": {
+          "personalIdentificationInformation": [
+            "Full name",
+            "Address",
+            "Phone number",
+            "Email address",
+            "Date of birth",
+            "Gender",
+            "Identification documents"
+          ],
+          "healthInformation": [
+            "Medical history",
+            "Diagnosis",
+            "Treatment records",
+            "Lab reports",
+            "Imaging results",
+            "Prescriptions",
+            "Health insurance details",
+            "Billing information"
+          ],
+          "digitalInteractionData": [
+            "IP address",
+            "Browser type",
+            "Operating system",
+            "Pages visited",
+            "Device information",
+            "Location (with consent)"
+          ]
+        }
+      },
+      {
+        "title": "How We Use Your Information",
+        "purposes": [
+          "To provide medical care and treatment",
+          "For appointment scheduling and reminders",
+          "To bill and process health insurance claims",
+          "For internal administration and medical audits",
+          "To improve our services and enhance patient experience",
+          "For legal and regulatory compliance"
+        ],
+        "note": "We do not sell your personal or health information to third parties."
+      },
+      {
+        "title": "Data Sharing and Disclosure",
+        "conditions": [
+          "With healthcare professionals involved in your treatment",
+          "With insurance providers for claim processing",
+          "With government or regulatory authorities, if required by law",
+          "With authorized third-party service providers under strict confidentiality agreements"
+        ]
+      },
+      {
+        "title": "Data Security",
+        "measures": [
+          "Encrypted medical records",
+          "Secure access control",
+          "Regular system audits and staff training"
+        ]
+      },
+      {
+        "title": "Patient Rights",
+        "rights": [
+          "Access your medical records",
+          "Request corrections to your information",
+          "Withdraw consent (where applicable)",
+          "File a complaint about privacy practices"
+        ],
+        "contact": {
+          "privacyOfficerEmail": "[Email]",
+          "phone": "[Phone Number]"
+        }
+      },
+      {
+        "title": "Cookies and Website Tracking",
+        "description": "We may use cookies or similar tracking technologies to enhance user experience. You can manage cookie settings via your browser preferences."
+      },
+      {
+        "title": "Children’s Privacy",
+        "description": "We do not knowingly collect data from children under 13 without the consent of a parent or guardian."
+      },
+      {
+        "title": "Third-Party Links",
+        "description": "Our website or digital services may contain links to external sites. We are not responsible for the privacy practices of those third parties."
+      },
+      {
+        "title": "Changes to This Policy",
+        "description": "We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated effective date."
+      },
+      {
+        "title": "Contact Us",
+        "contactInfo": {
+          "name": "[Hospital Name]",
+          "attention": "Privacy Officer",
+          "address": "Kaushik Enclave, Delhi, 110084",
+          "phone": "987-654-3210",
+          "email": "privacy@yourhospital.com"
+        }
+      }
+    ]
+  }
+}

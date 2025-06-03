@@ -19,7 +19,7 @@ const Details = () => {
     <SafeAreaProvider>
       <SafeAreaView className="flex-1 px-4 py-10 bg-stone-200 h-full">
         <View style={styles.row}>
-          <Image style={styles.logo} source={require('../assests/Logo.png')} />
+          <Image style={styles.logo} source={require('../assets/Logo.png')} />
           <View style={styles.hosInfo}>
             <Text className="font-semibold">DS SLOT</Text>
             <Text className="font-medium">(GOVT. OF NCT OF DELHI)</Text>
@@ -38,7 +38,7 @@ const Details = () => {
           <Image
             className="h-full w-full "
             // resizeMode='contain'
-            source={require('../assests/hospital.jpg')}
+            source={require('../assets/hospital.jpg')}
           />
         </View>
         <View className="px-5">

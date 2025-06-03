@@ -1,0 +1,16 @@
+{
+  "department": [
+    "Psychairty (मानसिक रोग)",
+    "Department Not Know (ज्ञात नहीं)",
+    "General Medicine (सामान्य चिकित्सा)",
+    "General Surgery (सामान्य शल्य चिकित्सा)",
+    "Pediatics (बाल चिकित्सा)",
+    "Obg (प्रसूति एवं स्त्री रोग)",
+    "Ent (कान, नाक और गला)",
+    "Ophthalmology (नेत्र विज्ञान)",
+    "Dermatology (त्वचा रोग)",
+    "Orthopedics (अस्थि रोग)"
+  ],
+  "gender": ["Male", "Female", "Other"],
+  "age": ["Years", "Months", "Day"]
+}

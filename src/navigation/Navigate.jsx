@@ -6,6 +6,7 @@ import {Details, Feedback, Form, Home, Logout, Policy} from '../screens';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {StatusBar, TouchableOpacity, Text} from 'react-native';
 import {useApp, AppProvider} from '../redux/AppContext.js';
+import BookingDetails from '../components/BookingDetails.jsx';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -27,6 +28,17 @@ const Navigate = () => {
             options={{
               headerShown: true,
               title: 'New Visit Form',
+              headerTitleAlign: 'center',
+              headerStyle: {backgroundColor: '#1e40af'},
+              headerTintColor: '#fff',
+            }}
+          />
+          <Stack.Screen
+            name="Booking Details"
+            component={BookingDetails}
+            options={{
+              headerShown: true,
+              title: 'Booking Details',
               headerTitleAlign: 'center',
               headerStyle: {backgroundColor: '#1e40af'},
               headerTintColor: '#fff',

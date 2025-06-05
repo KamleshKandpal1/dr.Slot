@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Select, SelectItem} from '@ui-kitten/components';
+import {Select, SelectItem, IndexPath} from '@ui-kitten/components';
 
 export default function FormSelect({
   placeholder,
-  options = [],
+  options = [], // array of strings only
   value,
   onValueChange,
 }) {
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  // Sync external value (from Formik or parent) to selectedIndex
+  // Sync external `value` with internal selected index
   useEffect(() => {
-    const index = options.findIndex(opt => opt === value);
+    const index = options.indexOf(value);
     if (index !== -1) {
-      setSelectedIndex({row: index});
+      setSelectedIndex(new IndexPath(index));
     } else {
       setSelectedIndex(null);
     }
@@ -26,14 +26,17 @@ export default function FormSelect({
     onValueChange && onValueChange(selectedValue);
   };
 
+  const displayValue =
+    selectedIndex && options[selectedIndex.row] !== undefined
+      ? options[selectedIndex.row]
+      : placeholder;
+
   return (
     <View style={styles.container}>
       <Select
         selectedIndex={selectedIndex}
         onSelect={handleSelect}
-        value={
-          selectedIndex === null ? placeholder : options[selectedIndex.row]
-        }
+        value={displayValue}
         placeholder={placeholder}>
         {options.map((opt, idx) => (
           <SelectItem key={idx} title={opt} />
@@ -44,7 +47,5 @@ export default function FormSelect({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    // marginVertical: 8,
-  },
+  container: {},
 });

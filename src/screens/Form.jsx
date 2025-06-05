@@ -1,25 +1,24 @@
 // screens/DataFormScreen.js
 import React, {useState} from 'react';
-import {View, Text, Alert, ScrollView, TouchableOpacity} from 'react-native';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import FormInput from '../components/FormInput.jsx';
-import FormSelect from '../components/FormSelect.jsx';
-import FormRadioGroup from '../components/FormRadioGroup.jsx';
-import FormDatePicker from '../components/FormDatePicker.jsx';
-import department from '../json/Department.json';
 import {useDispatch} from 'react-redux';
 import {addPatient} from '../redux/patientSlice.js';
 import moment from 'moment';
 import {useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import uuid from 'react-native-uuid';
-import FormError from '../components/FormError.jsx';
+import PatientForm from '../components/PatientForm.jsx';
+import {Snackbar} from 'react-native-paper';
 
 export default function DataFormScreen() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  const [loading, setLoading] = useState(false);
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+
   const validationSchema = Yup.object().shape({
     fullName: Yup.string().required('Name is required'),
     guardianName: Yup.string().required("Father's/Husband's name is required"),
@@ -56,21 +55,23 @@ export default function DataFormScreen() {
           }}
           validationSchema={validationSchema}
           onSubmit={(values, {resetForm}) => {
-
             const formData = {
               ...values,
               id: uuid.v4(),
               date: moment(values.date).format('DD-MM-YYYY'),
             };
-            dispatch(addPatient(formData));
-            Alert.alert('Debug', 'Submit button pressed');
-            Toast.show({
-              type: 'success', // 'success', 'error', or 'info'
-              text1: 'Success',
-              text2: 'Patient added successfully!',
-            });
-            resetForm();
-            navigation.navigate('Home');
+            setTimeout(() => {
+              dispatch(addPatient(formData));
+              setLoading(false);
+              setSnackbarVisible(true);
+              resetForm();
+              navigation.navigate('Home');
+            }, 1500);
+            // Toast.show({
+            //   type: 'success',
+            //   text1: 'Success',
+            //   text2: 'Patient added successfully!',
+            // });
           }}>
           {({
             handleChange,
@@ -80,124 +81,28 @@ export default function DataFormScreen() {
             values,
             errors,
             touched,
+            resetForm,
           }) => (
-            <ScrollView className="gap-y-5">
-              <View className="mb-6 bg-slate-200/25 border px-5 flex gap-y-5 rounded-2xl shadow-md p-4 border-stone-200">
-                <FormInput
-                  placeholder="Full Name *"
-                  value={values.fullName}
-                  onChangeText={handleChange('fullName')}
-                  onBlur={handleBlur('fullName')}
-                />
-                <FormError name="fullName" />
-                <FormInput
-                  placeholder="Father's/Husband's Name"
-                  value={values.guardianName}
-                  onChangeText={handleChange('guardianName')}
-                />
-                <FormError name="guardianName" />
-                <FormInput
-                  placeholder="Email"
-                  value={values.email}
-                  onChangeText={handleChange('email')}
-                  keyboardType="email-address"
-                />
-                <FormError name="email" />
-                <FormInput
-                  placeholder="Contact Number"
-                  value={values.contact}
-                  onChangeText={handleChange('contact')}
-                  keyboardType="numeric"
-                />
-                <FormError name="contact" />
-                <FormInput
-                  placeholder="Alternate Contact"
-                  value={values.altContact}
-                  onChangeText={handleChange('altContact')}
-                  keyboardType="numeric"
-                />
-                <Text className="text-slate-700 font-semibold ml-2">
-                  Select Gender
-                </Text>
-                <FormSelect
-                  placeholder="Select Gender"
-                  options={department.gender}
-                  value={values.gender}
-                  onValueChange={val => setFieldValue('gender', val)}
-                />
-                <FormError name="gender" />
-                <FormRadioGroup
-                  label="Age In"
-                  options={department.age}
-                  selectedIndex={department.age.indexOf(values.ageType)}
-                  onSelect={index =>
-                    setFieldValue('ageType', department.age[index])
-                  }
-                />
-                <FormInput
-                  placeholder="Age"
-                  value={values.age}
-                  onChangeText={handleChange('age')}
-                  keyboardType="numeric"
-                />
-                <FormError name="age" />
-                <FormInput
-                  placeholder="Address"
-                  value={values.address}
-                  onChangeText={handleChange('address')}
-                />
-                <FormError name="address" />
-                <FormInput
-                  placeholder="Aadhaar Number"
-                  value={values.aadhaar}
-                  onChangeText={handleChange('aadhaar')}
-                  keyboardType="numeric"
-                />
-                <FormError name="aadhaar" />
-                <FormInput
-                  placeholder="Voter Id Card"
-                  value={values.voterId}
-                  onChangeText={handleChange('voterId')}
-                />
-                <FormError name="voterId" />
-                <Text className="text-slate-700 font-semibold ml-2">
-                  Select Department
-                </Text>
-                <FormSelect
-                  value={values.department}
-                  placeholder="Select Department"
-                  options={department.department}
-                  onValueChange={val => setFieldValue('department', val)}
-                />
-                <FormError name="department" />
-                <Text className="text-slate-700 font-semibold ml-2">
-                  Select Date
-                </Text>
-                <FormDatePicker
-                  value={values.date}
-                  onChange={val => setFieldValue('date', val)}
-                  placeholder="Select Date*"
-                />
-                <FormError name="date" />
-                {values.date && (
-                  <Text className="border border-slate-300 bg-white rounded-xl px-4 py-3 text-base text-gray-500">
-                    08:00 Am-11:00 Am
-                  </Text>
-                )}
-              </View>
-              <TouchableOpacity
-                className="bg-blue-800 px-20 py-3 rounded-full items-center justify-center self-center"
-                onPress={() => {
-                  handleSubmit();
-                  console.log('Touched:', touched);
-                  console.log('Errors:', errors);
-                  console.log('Values:', values);
-                }}>
-                <Text className="text-lg text-white font-semibold uppercase tracking-widest">
-                  Submit
-                </Text>
-              </TouchableOpacity>
-            </ScrollView>
+            <>
+              <PatientForm
+                values={values}
+                errors={errors}
+                touched={touched}
+                handleChange={handleChange}
+                handleBlur={handleBlur}
+                handleSubmit={handleSubmit}
+                setFieldValue={setFieldValue}
+                loading={loading}
+              />
+
+              <Snackbar
+                visible={snackbarVisible}
+                onDismiss={() => setSnackbarVisible(false)}
+                duration={3000}
+                style={{backgroundColor: '#1e3a8a'}}>
+                Patient addes successfully!
+              </Snackbar>
+            </>
           )}
         </Formik>
       </SafeAreaView>

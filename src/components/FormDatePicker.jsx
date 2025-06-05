@@ -2,9 +2,9 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import moment from 'moment';
 import {Datepicker, Layout} from '@ui-kitten/components';
-import {MomentDateService} from '@ui-kitten/moment';
+// import {MomentDateService} from '@ui-kitten/moment';
 
-const dateService = new MomentDateService();
+// const dateService = new MomentDateService();
 
 const FormDatePicker = ({value, onChange, placeholder}) => {
   return (
@@ -13,7 +13,7 @@ const FormDatePicker = ({value, onChange, placeholder}) => {
         boundingMonth={true}
         placeholder={placeholder}
         date={value ?? null} // only show date if one is selected
-        dateService={dateService}
+        // dateService={dateService}
         onSelect={onChange}
       />
     </Layout>
